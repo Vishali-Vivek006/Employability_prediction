@@ -11,9 +11,26 @@ import tempfile
 
 import altair as alt
 import pandas as pd
+
 import streamlit as st
+import sys
+import importlib.util
+
+print("========== DEPLOYMENT DIAGNOSTICS ==========")
+print("Python version:", sys.version)
+print("Joblib location:", importlib.util.find_spec("joblib"))
+
+try:
+    import joblib
+    print("Joblib version:", joblib.__version__)
+    print("JOBLIB IMPORT SUCCESSFUL")
+except Exception as e:
+    print("JOBLIB IMPORT FAILED:", repr(e))
+
+print("============================================")
 
 import employability_core as ec
+
 import skill_gap as sg
 import role_extensions  # adds Civil / Mechanical / Production / Electrical / ECE / Aerospace roles
 from skills_registry import SKILLS, MODEL_TECH_SKILL_KEYS, display_name
